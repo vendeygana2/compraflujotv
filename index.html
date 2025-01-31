@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Fluid Forms</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .form-container {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black; /* Color negro */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .download-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        /* Efecto de ondas alrededor del botón */
+        .download-btn::before,
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: ripple 1.5s infinite;
+        }
+        .download-btn::after {
+            animation-delay: 0.5s;
+        }
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 90%;
+            width: 400px;
+            border: 2px solid black; /* Marco negro */
+        }
+        .modal-content h2 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .modal-content h2 img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .modal-content p {
+            margin: 10px 0;
+        }
+        .modal-content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .modal-content button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            margin-top: 20px;
+        }
+        /* Efecto de ondas para el botón "Copiar código" */
+        .modal-content button.copy-btn {
+            background-color: #28a745; /* Color verde para el botón de copiar */
+            position: relative;
+            overflow: visible; /* Permitir que las ondas se vean fuera del botón */
+        }
+        .modal-content button.copy-btn::before,
+        .modal-content button.copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%; /* Tamaño mayor que el botón */
+            height: 120%; /* Tamaño mayor que el botón */
+            background-color: rgba(40, 167, 69, 0.3); /* Color verde con transparencia */
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: ripple 1.5s infinite;
+            z-index: -1; /* Colocar las ondas detrás del botón */
+        }
+        .modal-content button.copy-btn::after {
+            animation-delay: 0.5s;
+        }
+        /* Estilos para la ventana de confirmación */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .confirmation-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            width: 300px;
+            border: 2px solid black; /* Marco negro */
+        }
+        .confirmation-content h3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .confirmation-content h3 img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .confirmation-content button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="close-btn" onclick="window.location.href='https://www.vendeygana.net/user/'">×</button>
+        </div>
+        <iframe class="form-container" src="https://fluidforms.co/embed/form?id=679cde751ab2cd47a53c1c47" frameborder="0"></iframe>
+        <div class="footer">
+            <button class="download-btn" onclick="openModal()">
+                <img src="https://images.seeklogo.com/logo-png/55/2/flujo-tv-logo-png_seeklogo-556291.png" alt="Flujo TV Logo">
+                ENLACE DE DESCARGA DE FLUJO TV
+            </button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2><img src="https://images.seeklogo.com/logo-png/55/2/flujo-tv-logo-png_seeklogo-556291.png" alt="Flujo TV Logo"> FLUJO TV Actualización v7.1.8</h2>
+            <p>👉CODIGO DOWNLOADER:</p>
+            <p>Ingrese el código</p>
+            <p>➡️ 414594</p>
+            <p>➡️ 168631</p>
+            <p>👉Smartphones / Android (v7.1.8)</p>
+            <p>➡️ <a href="https://bit.ly/flujo-mobile-v718" target="_blank">https://bit.ly/flujo-mobile-v718</a></p>
+            <p>👉Android Smart TV / Fire TV Stick / TV Box / «Android TV» (v7.1.8)</p>
+            <p>➡️ <a href="https://bit.ly/flujo-tv-v718" target="_blank">https://bit.ly/flujo-tv-v718</a></p>
+            <button class="copy-btn" onclick="copyContent()">Copiar código</button>
+            <button onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Ventana de confirmación -->
+    <div id="confirmation-modal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <h3><img src="https://images.seeklogo.com/logo-png/55/2/flujo-tv-logo-png_seeklogo-556291.png" alt="Flujo TV Logo"> Información copiada</h3>
+            <p>Se copió la información. Puede pegarla en su WhatsApp u otro lugar para tenerla disponible.</p>
+            <button onclick="closeConfirmationModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function copyContent() {
+            // Obtener el contenido de la ventana emergente
+            const modalContent = document.querySelector('.modal-content').innerText;
+
+            // Crear un elemento temporal para copiar el texto
+            const tempInput = document.createElement('textarea');
+            tempInput.value = modalContent;
+            document.body.appendChild(tempInput);
+
+            // Seleccionar y copiar el texto
+            tempInput.select();
+            document.execCommand('copy');
+
+            // Eliminar el elemento temporal
+            document.body.removeChild(tempInput);
+
+            // Mostrar la ventana de confirmación
+            document.getElementById('confirmation-modal').style.display = 'flex';
+        }
+
+        function closeConfirmationModal() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
